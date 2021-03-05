@@ -28,7 +28,7 @@ namespace StorageNA21.Controllers
         //}
         
         // GET: Products
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string name = null)
         {
             var model = db.Product.Select(p => new ProductViewModel
             {
@@ -38,6 +38,9 @@ namespace StorageNA21.Controllers
                 Price = p.Price,
                 InventoryValue = p.Price * p.Count
             });
+
+            if (name != null)
+                model = model.Where(p => p.Name.Contains(name));
 
             return View("Index2", await model.ToListAsync());
         }

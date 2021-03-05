@@ -24,14 +24,16 @@ namespace StorageNA21.Models
         [DataType(DataType.Date)]
         public DateTime OrderDate { get; set; }
 
-
         public string Category { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = true, NullDisplayText = "-")]    
         public string Shelf { get; set; }
+
+        [Range(0, int.MaxValue)]
         public int Count { get; set; }
 
         [DisplayFormat(ConvertEmptyStringToNull = true, NullDisplayText = "-")]
+        [StringLength(50)]
         public string Description { get; set; }
 
     }
